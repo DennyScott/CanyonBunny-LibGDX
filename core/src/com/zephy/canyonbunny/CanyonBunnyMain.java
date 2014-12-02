@@ -3,11 +3,13 @@ package com.zephy.canyonbunny;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.zephy.canyonbunny.game.WorldController;
 import com.zephy.canyonbunny.game.WorldRenderer;
+import com.zephy.canyonbunny.util.Assets;
 
 public class CanyonBunnyMain extends ApplicationAdapter {
 	private WorldController worldController;
@@ -19,6 +21,9 @@ public class CanyonBunnyMain extends ApplicationAdapter {
 		//Set Libgdx log level to DEBUG
 
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		
+		//Load assets
+		Assets.instance.init(new AssetManager());
 
 		//Initalize controller and renderer
 		worldController = new WorldController();
@@ -56,10 +61,12 @@ public class CanyonBunnyMain extends ApplicationAdapter {
 
 	@Override
 	public void resume() {
+		Assets.instance.init(new AssetManager());
 		paused = false;
 	}
 
 	@Override public void dispose() {
 		worldRenderer.dispose();
+		Assets.instance.dispose();
 	}
 }

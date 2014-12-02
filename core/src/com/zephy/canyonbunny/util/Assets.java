@@ -43,6 +43,13 @@ public class Assets implements Disposable, AssetErrorListener{
 		for (Texture t: atlas.getTextures()){
 			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		}
+		
+		//create game resource objects
+		bunny = new AssetBunny(atlas);
+		rock = new AssetRock(atlas);
+		goldCoin = new AssetGoldCoin(atlas);
+		feather = new AssetFeather(atlas);
+		levelDecoration = new AssetLevelDecoration(atlas);
 	}
 	
 	@Override
